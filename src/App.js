@@ -5,6 +5,19 @@ import BookList from './components/BookList';
 function App() {
     const [books, setBooks] = useState([]);
 
+    const editBookById = (id, newTitle) => {
+        const updatedBooks = books.map((book) => {
+            if (book.id === id) {
+                //we are updating the object by returning a new one, that takes all the existing properties from the book and then puts a new title in
+                return { ...book, title: newTitle };
+            }
+                // otherwise if we are mapping through other book, that has a different id, then we just return that book
+            return book;
+        });
+        // and now we are updating our state
+        setBooks(updatedBooks);
+    };
+
     const deleteBookById = (id) => {
         const updatedBooks = books.filter((book) => {
             return book.id !== id;
@@ -20,7 +33,8 @@ function App() {
 
     return (
         <div className='app'>
-            <BookList books={books} onDelete={deleteBookById} />
+            <h1>Reading List</h1>
+            <BookList onEdit={editBookById} books={books} onDelete={deleteBookById} />
             <BookCreate onCreate={createBook} />
         </div>
     );
