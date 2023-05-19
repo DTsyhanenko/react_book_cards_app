@@ -13,7 +13,7 @@ function App() {
         // 1: with second argument as [], we call after first render and never again
         // 2: with no second argument, we call after first render and after every next one
         // 3: with second argument as [counter], we call after first render and also called after rerenders if 'counter' variable changed
-    }, []);
+    }, [fetchBooks]);
 
     // DONT DO THIS:
     // fetchBooks(); Lektion: 123
