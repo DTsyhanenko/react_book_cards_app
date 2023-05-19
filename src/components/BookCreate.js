@@ -1,16 +1,19 @@
 import { useState } from 'react';
+import useBooksContext from '../hooks/use-books-context';
 
 
-function BookCreate({ onCreate }) {
+function BookCreate() {
     const [title, setTitle] = useState('');
     //The code here "setTitle(...) is meant to show what user just typed and we want to use it to update our title piece of state"
+    const { createBook } = useBooksContext();
+
     const handleChange = (event) => {
         setTitle(event.target.value);
     };
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        onCreate(title);
+        createBook(title);
         setTitle('');
     };
 
